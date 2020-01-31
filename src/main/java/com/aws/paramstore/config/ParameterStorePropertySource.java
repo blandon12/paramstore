@@ -12,8 +12,10 @@ public class ParameterStorePropertySource extends PropertySource<AWSSimpleSystem
 
   @Override
   public Object getProperty(String propertyName) {
-    if (name.startsWith("/")) {
-      System.out.println("################## " + name);
+
+    System.out.println("#####" + propertyName);
+
+    if (name.startsWith("/") && propertyName.startsWith("/config/paramstore")) {
       try {
         return source.getParameter(new GetParameterRequest().withName(propertyName)
                 .withWithDecryption(true))
